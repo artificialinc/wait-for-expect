@@ -30,8 +30,8 @@ test(
       await waitForExpect(() => {
         expect(numberNotToChange).toEqual(2000);
       }, 300);
-    } catch (e) {
-      expect(e.message).toMatchSnapshot();
+    } catch (error) {
+      expect(error.message).toMatchSnapshot();
       done();
     }
   },
@@ -52,8 +52,8 @@ test(
       await waitForExpect(() => {
         expect(numberToChangeTooLate).toEqual(3000);
       }, timeToPassForTheChangeToHappen - 200);
-    } catch (e) {
-      expect(e.message).toMatchSnapshot();
+    } catch (error) {
+      expect(error.message).toMatchSnapshot();
       done();
     }
   },
@@ -75,7 +75,7 @@ test("it reruns the expectation every x ms, as provided with the second argument
       timeout,
       interval
     );
-  } catch (e) {
+  } catch (error) {
     // initial run + reruns
     const expectedTimesToRun = 1 + Math.floor(timeout / interval);
     expect(timesRun).toEqual(expectedTimesToRun);
@@ -96,7 +96,7 @@ test("it reruns the expectation every x ms, as provided by the default timeout a
   try {
     await waitForExpect(mockExpectation);
     throw Error("waitForExpect should have thrown");
-  } catch (e) {
+  } catch (error) {
     // initial run + reruns
     const expectedTimesToRun = 1 + Math.floor(timeout / interval);
     expect(mockExpectation).toHaveBeenCalledTimes(expectedTimesToRun);
@@ -112,7 +112,7 @@ test("it works with promises", async () => {
   }, randomTimeout);
 
   const sleep = (ms: number) =>
-    new Promise(resolve => setTimeout(() => resolve(), ms));
+    new Promise<void>(resolve => setTimeout(() => resolve(), ms));
 
   await waitForExpect(async () => {
     await sleep(10);

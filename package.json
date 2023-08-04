@@ -9,8 +9,7 @@
     "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts,.tsx\"",
     "build:watch": "npm run build -- --watch",
     "type-check": "tsc --noEmit",
-    "semantic-release": "semantic-release",
-    "postinstall": "yarn"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -43,7 +42,7 @@
     "@types/eslint": "^4.16.0",
     "@types/eslint-plugin-prettier": "^2.2.0",
     "@types/jest": "^22.2.2",
-    "@types/node": "^9.6.1",
+    "@types/node": "^9.6.61",
     "@types/prettier": "^1.10.0",
     "@types/typescript": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
